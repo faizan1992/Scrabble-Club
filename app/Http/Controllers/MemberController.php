@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member; // Import the Member model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\UpdateStoreRequest;
+use App\Http\Requests\UpdateMembershipStoreRequest;
 
 class MemberController extends Controller
 {
@@ -57,10 +57,11 @@ class MemberController extends Controller
     /**
      * Update the specified member in the database.se
      */
-    public function update(UpdateStoreRequest $request, $id)
+    public function update(UpdateMembershipStoreRequest $request, $id)
     {   
         try {
             DB::beginTransaction();
+           
 
         // Find the member by ID and update their details
        
@@ -70,7 +71,7 @@ class MemberController extends Controller
 
         // Redirect to the show view for the updated member
         return redirect()->route('members.show', $member->id);
-         } catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             DB::rollBack();
             return redirect()
                 ->back()
