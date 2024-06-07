@@ -15,4 +15,14 @@ class Member extends Model
     {
         return $this->hasMany(Score::class);
     }
+
+     public function scopeTopScoring($query, $limit = 10)
+    {
+        return $query->with('scores')
+            ->get()
+            ->sortByDesc(function ($member) {
+                return $member->scores->avg('score');
+            })
+            ->take($limit);
+    }
 }

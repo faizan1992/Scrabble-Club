@@ -13,11 +13,17 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Name:</label>
                 <input type="text" id="name" name="name" value="{{ $member->name }}" class="form-control" required>
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="contact_details" class="form-label">Contact Details:</label>
                 <textarea id="contact_details" name="contact_details" class="form-control" required>{{ $member->contact_details }}</textarea>
+                @error('contact_details')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>

@@ -11,9 +11,11 @@
 
         <h2 class="mt-4">Recent Games</h2>
         <ul class="list-group list-group-flush">
-            @foreach($member->scores as $score)
-                <li class="list-group-item">{{ $score->game->date }}: {{ $score->score }}</li>
-            @endforeach
+            @forelse($member->scores as $score)
+                <li class="list-group-item">{{ $score->game->date }}: <b>Game Score = </b> {{ $score->score }}</li>
+                @empty
+                <p>No data found</p>
+            @endforelse
         </ul>
 
         <a href="{{ route('members.edit', $member->id) }}" class="btn btn-primary mt-4">Edit</a>

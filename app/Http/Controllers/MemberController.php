@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Member; // Import the Member model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\UpdateStoreRequest;
 
 class MemberController extends Controller
 {
@@ -55,20 +57,25 @@ class MemberController extends Controller
     /**
      * Update the specified member in the database.se
      */
-    public function update(Request $request, $id)
+    public function update(UpdateStoreRequest $request, $id)
     {   
-        // Validate the request data
-        $request->validate([
-            'name' => 'required',
-            'contact_details' => 'required',
-        ]);
+        try {
+            DB::beginTransaction();
 
         // Find the member by ID and update their details
+       
         $member = Member::findOrFail($id);
         $member->update($request->all());
+        DB::commit();
 
         // Redirect to the show view for the updated member
         return redirect()->route('members.show', $member->id);
+         } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()
+                ->back()
+                ->with('error', $exception->getMessage());
+        }
     }
 
     /**
@@ -77,12 +84,7 @@ class MemberController extends Controller
     public function leaderboard()
     {
         // Fetch all members with their scores
-        $members = Member::with('scores')
-            ->get()// Get all members
-            ->sortByDesc(function ($member) { // Sort members by their average score in descending order
-                return $member->scores->avg('score');
-            })
-            ->take(10);// Take the top 10 members
+        $members = Member::topScoring();// Take the top 10 members
 
         // Return the leaderboard view with the members data
         return view('members.leaderboard', compact('members'));
