@@ -27,14 +27,20 @@
                 background-color: #343a40;
                 color: #fff;
             }
+            .navbar-toggler {
+                border : 2px solid black;
+            }
         </style>
 </head>
 <body>
     <!-- Navigation bar -->
-    <header class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
             <a class="navbar-brand text-white" href="#">Scrabble Club</a>
-            <div class="collapse navbar-collapse">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('members.index') }}">Members</a>
@@ -45,7 +51,7 @@
                 </ul>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Main content area -->
     <main class="container mt-4">
