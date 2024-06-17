@@ -20,8 +20,10 @@ class MemberFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
+            'phone' => $this->faker->regexify('\+44 7\d{3} \d{6}'),// Generates a UK phone number
+            'email' => $this->faker->unique()->safeEmail,
             'join_date' => $this->faker->date,
-            'contact_details' => $this->faker->address,
+            'address' => $this->faker->address,
         ];
     }
 }

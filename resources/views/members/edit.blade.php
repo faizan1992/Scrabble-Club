@@ -19,9 +19,26 @@
             </div>
 
             <div class="mb-3">
-                <label for="contact_details" class="form-label">Contact Details:</label>
-                <textarea id="contact_details" name="contact_details" class="form-control" required>{{ $member->contact_details }}</textarea>
-                @error('contact_details')
+                <label for="phone" class="form-label">Phone Number (UK):</label>
+                <input type="text" id="phone" name="phone" value="{{ $member->phone }}" class="form-control" pattern="\+447\d{9}|\+44\s7\d{3}\s\d{6}|\+44\s7\d{9}" title="Phone number must be in the format +44 7XXX XXXXXX" required>
+                @error('phone')
+                   <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" value="{{ $member->email }}" class="form-control" required>
+                @error('email')
+                   <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Address:</label>
+                <textarea id="address" name="address" class="form-control" required>{{ $member->address }}</textarea>
+                @error('address')
                    <p>{{ $message }}</p>
                 @enderror
             </div>

@@ -23,16 +23,21 @@ public function rules(): array
 {
     return [
         'name' => 'required|min:3|max:50',
-        'contact_details' => 'required|max:100',
+        'phone' => 'required|max:20',
+        'email' => 'required|email|max:50',
+        'address' => 'required|max:100',
     ];
 }
 
     public function messages()
 {
     return [
-        'name.required' => 'name is required.',
-        'contact_details.required' => 'contact details is required.',
-        'contact_details.max' => 'Max char 100 are allowed..',
+        'name.required' => 'Name is required.',
+        'phone.required' => 'Phone number is required.',
+        'email.required' => 'Email is required.',
+        'email.email' => 'Email is incorrect.',
+        'address.required' => 'Address is required.',
+        'address.max' => 'Max char 100 are allowed..',
         'name.max' => 'Max char 50 are allowed.',
         'name.min' => 'Min char 50 are allowed.',
     ];

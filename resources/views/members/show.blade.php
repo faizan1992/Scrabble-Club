@@ -5,7 +5,9 @@
     <div class="card-body">
         <h1 class="card-title">{{ $member->name }}</h1>
         <p class="card-text"><strong>Joined on:</strong> {{ $member->join_date }}</p>
-        <p class="card-text"><strong>Contact Details:</strong> {{ $member->contact_details }}</p>
+        <p class="card-text"><strong>Phone Number:</strong> {{ $member->phone }}</p>
+        <p class="card-text"><strong>Email:</strong> {{ $member->email }}</p>
+        <p class="card-text"><strong>Addresss:</strong> {{ $member->address }}</p>
         <p class="card-text"><strong>Average Score:</strong> {{ $averageScore }}</p>
         <p class="card-text"><strong>Highest Score:</strong> {{ $highestScore }} (Game on {{ $highestScoreGame->game->date }})</p>
 
