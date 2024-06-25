@@ -55,7 +55,7 @@ class MemberController extends Controller
     }
 
     /**
-     * Update the specified member in the database.se
+     * Update the specified member in the database.
      */
     public function update(UpdateMembershipStoreRequest $request, $id)
     {   
