@@ -1,0 +1,23 @@
+name: Code Quality
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Run Qodana
+        run: |
+          docker pull jetbrains/qodana-js:latest
+          docker run --rm -v ${GITHUB_WORKSPACE}:/data jetbrains/qodana-js --save-report
