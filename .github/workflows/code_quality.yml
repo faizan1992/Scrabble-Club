@@ -5,6 +5,7 @@ on:
   push:
     branches: # Specify your branches here
       - main # The 'main' branch
+      - master # The 'master' branch
       - 'releases/*' # The release branches
 
 jobs:
@@ -15,14 +16,6 @@ jobs:
       pull-requests: write
       checks: write
     steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
-          fetch-depth: 0  # a full history is required for pull request analysis
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2024.1
         env:
